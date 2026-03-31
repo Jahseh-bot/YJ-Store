@@ -6,11 +6,18 @@
     },
     "filesystem": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-filesystem", "."]
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "."
+      ]
     },
     "fetch": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-fetch"]
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-fetch"
+      ]
     }
   },
   "permissions": {
@@ -23,7 +30,10 @@
       "Bash(curl -s *)",
       "Bash(netstat -ano)",
       "Bash(findstr *)",
-      "Bash(type *)"
+      "Bash(type *)",
+      "Bash(npx ts-node:*)",
+      "Bash(node progress-tracker.js show)",
+      "Bash(node progress-tracker.js mark 1.1)"
     ]
   },
   "hooks": {

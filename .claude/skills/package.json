@@ -1,0 +1,16 @@
+{
+  "name": "@yj-mall/progress",
+  "version": "1.0.0",
+  "description": "Progress tracker for YJ商城 development plan",
+  "main": "progress-tracker.ts",
+  "scripts": {
+    "show": "npx ts-node progress-tracker.ts show",
+    "mark": "npx ts-node progress-tracker.ts mark",
+    "unmark": "npx ts-node progress-tracker.ts unmark",
+    "reset": "npx ts-node progress-tracker.ts reset"
+  },
+  "dependencies": {
+    "typescript": "^5.4.0",
+    "ts-node": "^10.9.2"
+  }
+}
