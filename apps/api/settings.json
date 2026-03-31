@@ -1,0 +1,90 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm dev)",
+      "Bash(pnpm build)",
+      "Bash(pnpm test)",
+      "Bash(pnpm lint)",
+      "Bash(pnpm db:migrate)",
+      "Bash(pnpm db:seed)",
+      "Bash(pnpm db:generate *)",
+      "Bash(nest *)",
+      "Bash(curl -s http://localhost:3000/api/docs)",
+      "Bash(npx ts-node *)",
+      "Bash(typeorm *)"
+    ]
+  },
+  "hooks": {
+    "BeforeCommand": [
+      {
+        "match": "pnpm (build|dev)",
+        "prompt": "正在构建/启动API服务，请确保数据库和Redis已启动"
+      },
+      {
+        "match": "pnpm test",
+        "prompt": "正在运行测试，请确保测试数据库配置正确"
+      },
+      {
+        "match": "git commit",
+        "prompt": "请确保commit信息符合conventional commits规范"
+      }
+    ],
+    "AfterCommand": [
+      {
+        "match": "pnpm dev",
+        "prompt": "API服务已启动，可访问 http://localhost:3000/api/docs 查看Swagger文档"
+      },
+      {
+        "match": "pnpm build",
+        "prompt": "构建完成，请检查dist目录是否有输出"
+      }
+    ]
+  },
+  "context": {
+    "alwaysInclude": [
+      "src/**/*.ts",
+      "src/**/*.entity.ts",
+      "src/**/*.dto.ts",
+      "src/**/*.module.ts",
+      "src/**/*.controller.ts",
+      "src/**/*.service.ts"
+    ]
+  },
+  "review": {
+    "requireTests": true,
+    "blockOnTestFailure": false
+  },
+  "conventions": {
+    "commitMessage": {
+      "types": [
+        "feat",
+        "fix",
+        "docs",
+        "style",
+        "refactor",
+        "perf",
+        "test",
+        "build",
+        "ci",
+        "chore",
+        "revert"
+      ],
+      "scope": {
+        "required": false,
+        "allowed": [
+          "auth",
+          "users",
+          "products",
+          "cart",
+          "orders",
+          "payments",
+          "coupons",
+          "categories",
+          "common",
+          "config",
+          "database"
+        ]
+      }
+    }
+  }
+}

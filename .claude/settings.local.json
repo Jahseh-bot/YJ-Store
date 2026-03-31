@@ -1,17 +1,43 @@
 {
+  "mcpServers": {
+    "chrome-mcp-server": {
+      "type": "streamableHttp",
+      "url": "http://127.0.0.1:12306/mcp"
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "."]
+    },
+    "fetch": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-fetch"]
+    }
+  },
   "permissions": {
     "allow": [
-      "Bash(curl -s http://localhost:3001/)",
-      "Bash(curl -s http://localhost:3002/)",
-      "Bash(pnpm build:*)",
-      "Bash(pnpm add:*)",
-      "Bash(pnpm postinstall:*)",
-      "Bash(curl -s http://localhost:3002/src/main.ts)",
+      "Bash(pnpm *)",
+      "Bash(node *)",
+      "Bash(npm *)",
+      "Bash(git *)",
+      "Bash(npx *)",
+      "Bash(curl -s *)",
       "Bash(netstat -ano)",
-      "Bash(findstr ':3000 :3001 :3002')",
-      "Bash(grep -E 300[0-2])",
-      "Bash(curl -s http://localhost:3000/api/products)",
-      "Bash(python3 -m json.tool)"
+      "Bash(findstr *)",
+      "Bash(type *)"
+    ]
+  },
+  "hooks": {
+    "BeforeCommand": [
+      {
+        "match": "pnpm build",
+        "prompt": "正在构建项目，请确保所有项目配置正确"
+      }
+    ],
+    "AfterCommand": [
+      {
+        "match": "pnpm dev",
+        "prompt": "开发服务器已启动，可通过Turbo监控各服务状态"
+      }
     ]
   }
 }

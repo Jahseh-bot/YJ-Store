@@ -1,0 +1,75 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm dev)",
+      "Bash(pnpm build)",
+      "Bash(pnpm preview)",
+      "Bash(pnpm lint)",
+      "Bash(pnpm typecheck)",
+      "Bash(curl -s http://localhost:3002)",
+      "Bash(vite *)",
+      "Bash(antd --version)"
+    ]
+  },
+  "hooks": {
+    "BeforeCommand": [
+      {
+        "match": "pnpm (build|dev)",
+        "prompt": "正在构建/启动Admin管理后台"
+      },
+      {
+        "match": "git commit",
+        "prompt": "请确保提交前已通过类型检查和lint"
+      }
+    ],
+    "AfterCommand": [
+      {
+        "match": "pnpm dev",
+        "prompt": "Admin管理后台已启动，可访问 http://localhost:3002 查看"
+      },
+      {
+        "match": "pnpm build",
+        "prompt": "构建完成，请检查dist目录是否有输出"
+      }
+    ]
+  },
+  "context": {
+    "alwaysInclude": [
+      "src/**/*.vue",
+      "src/**/*.ts",
+      "src/**/*.tsx",
+      "src/pages/**/*.vue",
+      "src/components/**/*.vue",
+      "src/stores/**/*.ts",
+      "src/router/**/*.ts",
+      "src/types/**/*.ts",
+      "src/api/**/*.ts"
+    ]
+  },
+  "review": {
+    "requireTests": false,
+    "blockOnTestFailure": false,
+    "checkTypes": true
+  },
+  "conventions": {
+    "vue": {
+      "naming": "PascalCase",
+      "componentFiles": "*.vue",
+      "preferCompositionApi": true,
+      "scriptSetup": true
+    },
+    "ant-design": {
+      "prefix": "a-",
+      "components": [
+        "a-button",
+        "a-table",
+        "a-form",
+        "a-input",
+        "a-select",
+        "a-modal",
+        "a-message",
+        "a-notification"
+      ]
+    }
+  }
+}

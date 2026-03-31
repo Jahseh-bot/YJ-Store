@@ -1,0 +1,61 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm dev)",
+      "Bash(pnpm build)",
+      "Bash(pnpm generate)",
+      "Bash(pnpm preview)",
+      "Bash(pnpm lint)",
+      "Bash(pnpm typecheck)",
+      "Bash(curl -s http://localhost:3001)",
+      "Bash(nuxt *)",
+      "Bash(npx vue-tsc *)"
+    ]
+  },
+  "hooks": {
+    "BeforeCommand": [
+      {
+        "match": "pnpm (build|dev|generate)",
+        "prompt": "正在构建/生成Nuxt应用"
+      },
+      {
+        "match": "git commit",
+        "prompt": "请确保提交前已通过类型检查和lint"
+      }
+    ],
+    "AfterCommand": [
+      {
+        "match": "pnpm dev",
+        "prompt": "Web应用已启动，可访问 http://localhost:3001 查看"
+      },
+      {
+        "match": "pnpm generate",
+        "prompt": "静态站点已生成，检查.output/public目录"
+      }
+    ]
+  },
+  "context": {
+    "alwaysInclude": [
+      "src/**/*.vue",
+      "src/**/*.ts",
+      "src/**/*.tsx",
+      "src/pages/**/*.vue",
+      "src/components/**/*.vue",
+      "src/composables/**/*.ts",
+      "src/stores/**/*.ts",
+      "src/types/**/*.ts"
+    ]
+  },
+  "review": {
+    "requireTests": false,
+    "blockOnTestFailure": false,
+    "checkTypes": true
+  },
+  "conventions": {
+    "vue": {
+      "naming": "PascalCase",
+      "componentFiles": "*.vue",
+      "preferCompositionApi": true
+    }
+  }
+}
