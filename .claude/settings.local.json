@@ -33,7 +33,11 @@
       "Bash(type *)",
       "Bash(npx ts-node:*)",
       "Bash(node progress-tracker.js show)",
-      "Bash(node progress-tracker.js mark 1.1)"
+      "Bash(node progress-tracker.js mark 1.1)",
+      "Bash(find C:/Users/MY/Desktop/Projects/marketplace/apps/api/src -type f -name *.ts)",
+      "Bash(pnpm install:*)",
+      "Bash(find C:/Users/MY/Desktop/Projects/marketplace/apps/web/src -type f -name *.vue -o -name *.ts)",
+      "Bash(find C:/Users/MY/Desktop/Projects/marketplace/apps/admin/src -type f -name *.vue -o -name *.tsx -o -name *.ts)"
     ]
   },
   "hooks": {

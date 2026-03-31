@@ -20,7 +20,7 @@ export class CartItem extends BaseEntity {
 
   @ManyToOne(() => User, (user) => user.cartItems)
   @JoinColumn({ name: 'user_id' })
-  user: User
+  user?: User
 
   @Index()
   @Column({ name: 'product_id' })
@@ -28,7 +28,7 @@ export class CartItem extends BaseEntity {
 
   @ManyToOne(() => Product)
   @JoinColumn({ name: 'product_id' })
-  product: Product
+  product?: Product
 
   @Index()
   @Column({ name: 'sku_id' })
@@ -36,7 +36,7 @@ export class CartItem extends BaseEntity {
 
   @ManyToOne(() => SKU)
   @JoinColumn({ name: 'sku_id' })
-  sku: SKU
+  sku?: SKU
 
   @Column({ type: 'int', default: 1 })
   quantity: number

@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Delete, Body, Param } from '@nestjs/common'
+import { Controller, Get, Post, Delete, Body, Param, ParseIntPipe } from '@nestjs/common'
 import { ApiTags, ApiOperation } from '@nestjs/swagger'
 import { CartItem } from './cart.entity'
 import { AddToCartDto } from './cart.dto'
@@ -24,7 +24,18 @@ export class CartController {
     }
     const item: CartItem = {
       id: this.items.length + 1,
-      ...dto
+      userId: 1,
+      productId: dto.productId,
+      skuId: 1,
+      quantity: dto.quantity,
+      isSelected: true,
+      addedAt: new Date(),
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      deletedAt: undefined,
+      user: undefined,
+      product: undefined,
+      sku: undefined
     }
     this.items.push(item)
     return item
@@ -32,8 +43,8 @@ export class CartController {
 
   @Delete(':id')
   @ApiOperation({ summary: 'Remove item from cart' })
-  remove(@Param('id') id: string): boolean {
-    const index = this.items.findIndex(i => i.id === parseInt(id))
+  remove(@Param('id', ParseIntPipe) id: number): boolean {
+    const index = this.items.findIndex(i => i.id === id)
     if (index > -1) {
       this.items.splice(index, 1)
       return true

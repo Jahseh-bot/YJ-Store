@@ -6,7 +6,7 @@ import {
   HttpStatus
 } from '@nestjs/common'
 import { Reflector } from '@nestjs/core'
-import { Throttle, ThrottleSkip } from '../decorators/throttle.decorator'
+import { THROTTLE_KEY, THROTTLE_SKIP_KEY } from '../decorators/throttle.decorator'
 
 @Injectable()
 export class ThrottlerGuard implements CanActivate {
@@ -17,7 +17,7 @@ export class ThrottlerGuard implements CanActivate {
   canActivate(context: ExecutionContext): boolean {
     // Skip throttling if decorated with @ThrottleSkip
     const skipThrottle = this.reflector.getAllAndOverride<boolean>(
-      ThrottleSkip.KEY,
+      THROTTLE_SKIP_KEY,
       [context.getHandler(), context.getClass()]
     )
 
@@ -27,7 +27,7 @@ export class ThrottlerGuard implements CanActivate {
 
     // Get throttle settings from decorator or use default
     const throttleSetting = this.reflector.getAllAndOverride<{ ttl: number; limit: number }>(
-      Throttle.KEY,
+      THROTTLE_KEY,
       [context.getHandler(), context.getClass()]
     )
 

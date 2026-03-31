@@ -20,7 +20,6 @@ import { redisStore } from 'cache-manager-redis-yet'
             port: redisConfig.port
           },
           password: redisConfig.password,
-          db: redisConfig.db,
           ttl: cacheConfig.ttl
         })
 

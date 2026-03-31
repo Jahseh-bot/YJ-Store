@@ -43,13 +43,13 @@ export class User extends BaseEntity {
   phone: string
 
   @Column({ name: 'avatar_url', length: 500, nullable: true })
-  avatarUrl: string
+  avatarUrl?: string
 
   @Column({ name: 'is_active', default: true })
   isActive: boolean
 
   @Column({ name: 'last_login_at', nullable: true })
-  lastLoginAt: Date
+  lastLoginAt?: Date
 
   @OneToMany(() => CartItem, (cart) => cart.user)
   cartItems: CartItem[]
@@ -67,8 +67,8 @@ export class User extends BaseEntity {
 
   @Column({ name: 'refresh_token', select: false, nullable: true })
   @Exclude()
-  refreshToken: string
+  refreshToken?: string
 
   @Column({ name: 'refresh_token_expires_at', nullable: true })
-  refreshTokenExpiresAt: Date
+  refreshTokenExpiresAt?: Date
 }

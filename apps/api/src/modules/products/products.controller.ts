@@ -1,6 +1,7 @@
 import { Controller, Get, Post, Put, Delete, Param, Body, ParseIntPipe } from '@nestjs/common'
 import { ApiTags, ApiOperation } from '@nestjs/swagger'
 import { Product } from './product.entity'
+import { ProductStatus } from './product-status.enum'
 import { CreateProductDto, UpdateProductDto } from './products.dto'
 
 @ApiTags('Products')
@@ -10,20 +11,58 @@ export class ProductsController {
     {
       id: 1,
       name: 'Sample Product 1',
-      description: 'This is a sample product',
-      price: 99.99,
-      image: 'https://via.placeholder.com/300',
-      stock: 10,
-      categoryId: 1
+      subtitle: 'This is a sample product',
+      description: 'This is a sample product description',
+      categoryId: 1,
+      brandId: 1,
+      brandName: 'Sample Brand',
+      status: ProductStatus.ON_SALE,
+      sellerId: 1,
+      reviewCount: 0,
+      reviewScore: 0,
+      viewCount: 0,
+      salesCount: 0,
+      isDeleted: false,
+      freightTemplateId: 1,
+      sevenDayReturn: true,
+      warrantyYear: 1,
+      detailHtml: '<p>Product details</p>',
+      mobileDetailHtml: '<p>Product details</p>',
+      skus: [],
+      images: [],
+      specifications: [],
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      deletedAt: undefined,
+      category: undefined
     },
     {
       id: 2,
       name: 'Sample Product 2',
-      description: 'This is another sample product',
-      price: 149.99,
-      image: 'https://via.placeholder.com/300',
-      stock: 5,
-      categoryId: 1
+      subtitle: 'This is another sample product',
+      description: 'This is another sample product description',
+      categoryId: 1,
+      brandId: 1,
+      brandName: 'Sample Brand',
+      status: ProductStatus.ON_SALE,
+      sellerId: 1,
+      reviewCount: 0,
+      reviewScore: 0,
+      viewCount: 0,
+      salesCount: 0,
+      isDeleted: false,
+      freightTemplateId: 1,
+      sevenDayReturn: true,
+      warrantyYear: 1,
+      detailHtml: '<p>Product details</p>',
+      mobileDetailHtml: '<p>Product details</p>',
+      skus: [],
+      images: [],
+      specifications: [],
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      deletedAt: undefined,
+      category: undefined
     }
   ]
   private nextId = 3
@@ -45,7 +84,31 @@ export class ProductsController {
   create(@Body() dto: CreateProductDto): Product {
     const product: Product = {
       id: this.nextId++,
-      ...dto
+      name: dto.name,
+      subtitle: undefined,
+      description: dto.description,
+      categoryId: dto.categoryId,
+      brandId: undefined,
+      brandName: undefined,
+      status: ProductStatus.DRAFT,
+      sellerId: 1,
+      reviewCount: 0,
+      reviewScore: 0,
+      viewCount: 0,
+      salesCount: 0,
+      isDeleted: false,
+      freightTemplateId: undefined,
+      sevenDayReturn: true,
+      warrantyYear: 0,
+      detailHtml: undefined,
+      mobileDetailHtml: undefined,
+      skus: [],
+      images: [],
+      specifications: [],
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      deletedAt: undefined,
+      category: undefined
     }
     this.products.push(product)
     return product

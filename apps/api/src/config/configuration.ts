@@ -1,10 +1,14 @@
 import { registerAs } from '@nestjs/config'
-import { JwtOptionsFactory } from '@nestjs/jwt'
-import { redisStore } from 'cache-manager-redis-yet'
+
+const safeParseInt = (value: string | undefined, defaultValue: number): number => {
+  if (!value) return defaultValue
+  const parsed = parseInt(value, 10)
+  return isNaN(parsed) ? defaultValue : parsed
+}
 
 export const AppConfig = registerAs('app', () => ({
   nodeEnv: process.env.NODE_ENV || 'development',
-  port: parseInt(process.env.PORT, 10) || 3000,
+  port: safeParseInt(process.env.PORT, 3000),
   name: process.env.APP_NAME || 'Marketplace API',
   description: process.env.APP_DESCRIPTION || 'Marketplace API Backend',
   corsOrigins: process.env.CORS_ORIGINS?.split(',') || [
@@ -15,7 +19,7 @@ export const AppConfig = registerAs('app', () => ({
 
 export const DatabaseConfig = registerAs('database', () => ({
   host: process.env.DB_HOST || 'localhost',
-  port: parseInt(process.env.DB_PORT, 10) || 5432,
+  port: safeParseInt(process.env.DB_PORT, 5432),
   username: process.env.DB_USERNAME || 'postgres',
   password: process.env.DB_PASSWORD || 'postgres',
   database: process.env.DB_DATABASE || 'marketplace',
@@ -26,9 +30,9 @@ export const DatabaseConfig = registerAs('database', () => ({
 
 export const RedisConfig = registerAs('redis', () => ({
   host: process.env.REDIS_HOST || 'localhost',
-  port: parseInt(process.env.REDIS_PORT, 10) || 6379,
+  port: safeParseInt(process.env.REDIS_PORT, 6379),
   password: process.env.REDIS_PASSWORD || undefined,
-  db: parseInt(process.env.REDIS_DB, 10) || 0
+  db: safeParseInt(process.env.REDIS_DB, 0)
 }))
 
 export const JwtConfig = registerAs('jwt', () => ({
@@ -39,8 +43,8 @@ export const JwtConfig = registerAs('jwt', () => ({
 }))
 
 export const ThrottleConfig = registerAs('throttle', () => ({
-  ttl: parseInt(process.env.THROTTLE_TTL, 10) || 60000,
-  limit: parseInt(process.env.THROTTLE_LIMIT, 10) || 100
+  ttl: safeParseInt(process.env.THROTTLE_TTL, 60000),
+  limit: safeParseInt(process.env.THROTTLE_LIMIT, 100)
 }))
 
 export const UploadConfig = registerAs('upload', () => ({
@@ -49,13 +53,13 @@ export const UploadConfig = registerAs('upload', () => ({
 }))
 
 export const CacheConfig = registerAs('cache', () => ({
-  ttl: parseInt(process.env.CACHE_TTL, 10) || 3600000
+  ttl: safeParseInt(process.env.CACHE_TTL, 3600000)
 }))
 
 export const BullConfig = registerAs('bull', () => ({
   redis: {
     host: process.env.BULL_REDIS_HOST || 'localhost',
-    port: parseInt(process.env.BULL_REDIS_PORT, 10) || 6379
+    port: safeParseInt(process.env.BULL_REDIS_PORT, 6379)
   }
 }))
 

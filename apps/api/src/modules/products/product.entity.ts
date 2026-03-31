@@ -21,24 +21,24 @@ export class Product extends BaseEntity {
 
   @Index()
   @Column({ name: 'subtitle', length: 500, nullable: true })
-  subtitle: string
+  subtitle?: string
 
   @Column({ type: 'text', nullable: true })
-  description: string
+  description?: string
 
   @ManyToOne(() => Category, (category) => category.products)
   @JoinColumn({ name: 'category_id' })
-  category: Category
+  category?: Category
 
   @Index()
   @Column({ name: 'category_id' })
   categoryId: number
 
   @Column({ name: 'brand_id', nullable: true })
-  brandId: number
+  brandId?: number
 
   @Column({ name: 'brand_name', length: 100, nullable: true })
-  brandName: string
+  brandName?: string
 
   @Column({
     type: 'enum',
@@ -66,7 +66,7 @@ export class Product extends BaseEntity {
   isDeleted: boolean
 
   @Column({ name: 'freight_template_id', nullable: true })
-  freightTemplateId: number
+  freightTemplateId?: number
 
   @Column({ name: 'seven_day_return', default: true })
   sevenDayReturn: boolean
@@ -75,10 +75,10 @@ export class Product extends BaseEntity {
   warrantyYear: number
 
   @Column({ name: 'detail_html', type: 'text', nullable: true })
-  detailHtml: string
+  detailHtml?: string
 
   @Column({ name: 'mobile_detail_html', type: 'text', nullable: true })
-  mobileDetailHtml: string
+  mobileDetailHtml?: string
 
   @OneToMany(() => SKU, (sku) => sku.product, { cascade: true })
   skus: SKU[]

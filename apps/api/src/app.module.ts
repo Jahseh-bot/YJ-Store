@@ -8,6 +8,19 @@ import { ProductsModule } from './modules/products/products.module'
 import { AuthModule } from './modules/auth/auth.module'
 import { CartModule } from './modules/cart/cart.module'
 import { UsersModule } from './modules/users/users.module'
+import { AddressesModule } from './modules/addresses/addresses.module'
+import { OrdersModule } from './modules/orders/orders.module'
+import { CategoriesModule } from './modules/categories/categories.module'
+import { ReviewsModule } from './modules/reviews/reviews.module'
+import { ShopsModule } from './modules/shops/shops.module'
+import { CouponsModule } from './modules/coupons/coupons.module'
+import { ActivitiesModule } from './modules/activities/activities.module'
+import { AdsModule } from './modules/ads/ads.module'
+import { PaymentsModule } from './modules/payments/payments.module'
+import { LogisticsModule } from './modules/logistics/logistics.module'
+import { RegionsModule } from './modules/regions/regions.module'
+import { FreightModule } from './modules/freight/freight.module'
+
 import { SharedModule } from './shared/shared.module'
 import { DatabaseModule } from './database/database.module'
 import { RedisCacheModule } from './modules/cache/cache.module'
@@ -18,16 +31,14 @@ import { GlobalExceptionFilter } from './filters/http-exception.filter'
 import { QueryFailedFilter } from './filters/query-failed.filter'
 import { TransformInterceptor } from './interceptors/transform.interceptor'
 import { LoggingInterceptor } from './interceptors/logging.interceptor'
-import { ThrottlerConfig } from './config/configuration'
+import { ThrottleConfig } from './config/configuration'
 
 @Module({
   imports: [
     // Config
     ConfigModule.forRoot({
       isGlobal: true,
-      load: [
-        ThrottlerConfig
-      ]
+      load: [ThrottleConfig]
     }),
 
     // Throttler - Rate limiting
@@ -54,7 +65,19 @@ import { ThrottlerConfig } from './config/configuration'
     ProductsModule,
     AuthModule,
     CartModule,
-    UsersModule
+    UsersModule,
+    AddressesModule,
+    OrdersModule,
+    CategoriesModule,
+    ReviewsModule,
+    ShopsModule,
+    CouponsModule,
+    ActivitiesModule,
+    AdsModule,
+    PaymentsModule,
+    LogisticsModule,
+    RegionsModule,
+    FreightModule
   ],
   controllers: [],
   providers: [
