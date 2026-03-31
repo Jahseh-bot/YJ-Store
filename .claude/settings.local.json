@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s http://localhost:3001/)",
+      "Bash(curl -s http://localhost:3002/)",
+      "Bash(pnpm build:*)",
+      "Bash(pnpm add:*)",
+      "Bash(pnpm postinstall:*)",
+      "Bash(curl -s http://localhost:3002/src/main.ts)",
+      "Bash(netstat -ano)",
+      "Bash(findstr ':3000 :3001 :3002')",
+      "Bash(grep -E 300[0-2])",
+      "Bash(curl -s http://localhost:3000/api/products)",
+      "Bash(python3 -m json.tool)"
+    ]
+  }
+}

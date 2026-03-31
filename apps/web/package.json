@@ -1,0 +1,29 @@
+{
+  "name": "@marketplace/web",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build --no-type-check",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts",
+    "typecheck": "nuxt typecheck"
+  },
+  "dependencies": {
+    "@pinia/nuxt": "^0.5.0",
+    "nuxt": "^3.11.0",
+    "pinia": "^2.1.0",
+    "vue": "^3.4.0",
+    "vue-router": "^4.3.0"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "^1.0.0",
+    "@types/node": "^20.11.0",
+    "@vue/eslint-config-typescript": "^13.0.0",
+    "eslint": "^9.0.0",
+    "typescript": "^5.4.0",
+    "vue-tsc": "^2.0.0"
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "claudeMcp.server.command": "mcp-server start",
+  "claudeMcp.server.config": ".mcp/config.json",
+  "claudeMcp.autoConnect": true 
+}
